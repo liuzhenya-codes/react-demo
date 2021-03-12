@@ -22,8 +22,8 @@ class App extends Component {
   }
 
   // 输入框内容变化时
-  handleInputChange (e) {
-    const inputValue = e.target.value
+  handleInputChange () {
+    const inputValue = this.inputElement.value
     this.setState(() => ({ inputValue }))
   }
 
@@ -36,7 +36,9 @@ class App extends Component {
     this.setState((prevState) => ({
       list: [...prevState.list, prevState.inputValue],
       inputValue: ''
-    }))
+    }), () => { // setState 接收第二个回调函数参数, 当 setState 的变化使得 dom 变更这个动作完成之后, 会调用这个回调函数, 类似于 Vue 里的 this.$nextTick()
+      console.log(this.ulElement.querySelectorAll('li'))
+    })
   }
 
   handelInputKeyUp (e) {
@@ -73,10 +75,11 @@ class App extends Component {
             value={this.state.inputValue}
             onChange={this.handleInputChange}
             onKeyUp={this.handelInputKeyUp}
+            ref={(element) => {this.inputElement = element}}
           />
           <button className='btn-css' onClick={this.handelAddItem}>添加</button>
         </div>
-        <ul>{this.getList()}</ul>
+        <ul ref={(element) => {this.ulElement = element}}>{this.getList()}</ul>
       </Fragment>
     );
   }
