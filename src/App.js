@@ -37,7 +37,7 @@ class App extends Component {
       list: [...prevState.list, prevState.inputValue],
       inputValue: ''
     }), () => { // setState 接收第二个回调函数参数, 当 setState 的变化使得 dom 变更这个动作完成之后, 会调用这个回调函数, 类似于 Vue 里的 this.$nextTick()
-      console.log(this.ulElement.querySelectorAll('li'))
+      // console.log(this.ulElement.querySelectorAll('li'))
     })
   }
 

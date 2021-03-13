@@ -17,6 +17,9 @@ class Item extends Component {
       </Fragment>
     )
   }
+  shouldComponentUpdate (nextProps, nextState) { // 灵活使用生命周期函数 shouldComponentUpdate 进行新旧数据比对, 避免无意义的组件重新渲染
+    return nextProps.text !== this.props.text // 只有当前组件需要的 props 发生变化时, 才需要重新渲染当前组件, 否则就不需要重新渲染
+  }
 }
 
 /*
