@@ -25,7 +25,7 @@ React 中的 props 类型和默认值
 */
 Item.propTypes = { // 配置 props 里各项的类型
   test: ProsTypes.string.isRequired,
-  content: ProsTypes.oneOfType([ProsTypes.number, ProsTypes.string]),
+  text: ProsTypes.oneOfType([ProsTypes.number, ProsTypes.string]),
   index: ProsTypes.number,
   handelDeleteItem: ProsTypes.func
 }

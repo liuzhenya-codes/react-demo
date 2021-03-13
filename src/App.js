@@ -58,7 +58,7 @@ class App extends Component {
   getList () {
     return this.state.list.map((item, index) =>
       <Item
-        key={index}
+        key={item}
         text={item}
         index={index}
         handelDeleteItem={this.handelDeleteItem} // 若子组件需要调用父组件方法, 则需要父组件将方法传入子组件, 传入后, 子组件直接调用 this.props.handelDeleteItem 以触发父组件的 handelDeleteItem 方法
@@ -83,6 +83,29 @@ class App extends Component {
       </Fragment>
     );
   }
+
+  // 生命周期函数
+
+  // 组件即将被挂载到页面上之前, 类似于 Vue 中的 beforeMount
+  // UNSAFE_componentWillMount
+
+  // 组件已经被挂载到页面上了, 类似于 Vue 中的 mounted
+  // componentDidMount
+
+  // 组件的 state 发生了变化, 即将触发 dom 的重新渲染, 但是你需要确认是否需要进行这个操作, 返回一个 Boolean, true 表示需要, false 表示不需要
+  // shouldComponentUpdate
+
+  // 如果组件接收了父组件传入的参数, 那么当父组件的 state 重新发生变化时, 会触发此生命周期
+  // UNSAFE_componentWillReceiveProps
+
+  // shouldComponentUpdate => true 之后, 页面将会触发重新渲染, 在渲染之前触发此函数, 类似与 Vue 中的 beforeUpdate
+  // UNSAFE_componentWillUpdate
+
+  // 组件完成了重新渲染, 类似于 Vue 中的 updated
+  // componentDidUpdate
+
+  // 组件即将被剔除出页面, 类似于 Vue 中的 beforeDestory
+  // componentWillUnmount
 }
 
 export default App;
