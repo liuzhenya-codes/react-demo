@@ -1,0 +1,34 @@
+.in {
+  animation: in 2s ease-in forwards;
+}
+.out {
+  animation: out 2s ease-in forwards;
+}
+@keyframes in {
+  0% {
+    opacity: 0;
+    color: blue;
+  }
+  50% {
+    opacity: 0.5;
+    color: red;
+  }
+  100% {
+    opacity: 1;
+    color: green;
+  }
+}
+@keyframes out {
+  0% {
+    opacity: 1;
+    color: green;
+  }
+  50% {
+    opacity: 0.5;
+    color: red;
+  }
+  100% {
+    opacity: 0;
+    color: blue;
+  }
+}
