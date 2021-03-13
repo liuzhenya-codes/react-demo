@@ -1,6 +1,6 @@
 import { Component, Fragment } from 'react'
-
 import Item from './Item'
+import axios from 'axios'
 
 class App extends Component {
   // 构造函数, 设置基础数据
@@ -8,10 +8,7 @@ class App extends Component {
     super(props)
     // 数据
     this.state = {
-      list: [
-        'learn react',
-        'learn english'
-      ],
+      list: [],
       inputValue: ''
     }
     // 为需要使用 this 的函数配置绑定指向
@@ -54,6 +51,18 @@ class App extends Component {
     })
   }
 
+  // list 数据获取
+  getTodolistData () {
+    axios.get('mock/todolist.json').then(res => {
+      this.setState(() => {
+        return {
+          list: [...res.data]
+        }
+      })
+    }).catch(e => {
+      console.warn(e)
+    })
+  }
   // list 渲染
   getList () {
     return this.state.list.map((item, index) =>
@@ -90,7 +99,9 @@ class App extends Component {
   // UNSAFE_componentWillMount
 
   // 组件已经被挂载到页面上了, 类似于 Vue 中的 mounted
-  // componentDidMount
+  componentDidMount () {
+    this.getTodolistData()
+  }
 
   // 组件的 state 发生了变化, 即将触发 dom 的重新渲染, 但是你需要确认是否需要进行这个操作, 返回一个 Boolean, true 表示需要, false 表示不需要
   // shouldComponentUpdate
