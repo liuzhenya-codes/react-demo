@@ -1,7 +1,8 @@
 import { Component } from 'react'
 import store from '../store/state'
-import { getChangeInputAction, getAddItemAction, getDeleteItemAction } from '../store/actionCreators'
+import { getChangeInputAction, getInitTodolist, getAddItemAction, getDeleteItemAction } from '../store/actionCreators'
 import TodoListUI from './TodoListUI'
+import axios from 'axios'
 
 class ReduxDemo extends Component {
   constructor (props) {
@@ -13,6 +14,15 @@ class ReduxDemo extends Component {
     this.handleStoreChange = this.handleStoreChange.bind(this)
     this.handelInputKeyUp = this.handelInputKeyUp.bind(this)
     store.subscribe(this.handleStoreChange)
+  }
+
+  initTodoList () {
+    axios.get('mock/todolist.json').then(res => {
+      const action = getInitTodolist(res.data)
+      store.dispatch(action)
+    }).catch(e => {
+      console.warn(e)
+    })
   }
 
   handleInputChange (e) {
@@ -48,6 +58,10 @@ class ReduxDemo extends Component {
             handleInputChange={this.handleInputChange}
             handelDelete={this.handelDelete}
           />
+  }
+
+  componentDidMount () {
+    this.initTodoList()
   }
 }
 
