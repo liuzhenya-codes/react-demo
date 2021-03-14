@@ -1,3 +1,5 @@
+import { CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE_TODO_ITEM } from '../store/actionTypes'
+
 const stateData = {
   inputValue: '',
   list: []
@@ -5,17 +7,17 @@ const stateData = {
 
 const reducer = (state = stateData, action) => {
   switch (action.type) {
-    case 'change_input_value': {
+    case CHANGE_INPUT_VALUE: {
       const newState = JSON.parse(JSON.stringify(state))
       newState.inputValue = action.value
       return newState
     }
-    case 'add_list': {
+    case ADD_TODO_ITEM: {
       const newState = JSON.parse(JSON.stringify(state))
       newState.list.push(newState.inputValue)
       return newState
     }
-    case 'delete_list': {
+    case DELETE_TODO_ITEM: {
       const newState = JSON.parse(JSON.stringify(state))
       newState.list.splice(action.index, 1)
       return newState
