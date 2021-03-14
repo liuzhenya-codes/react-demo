@@ -1,8 +1,9 @@
 import { Component, Fragment } from 'react'
 import Item from './Item'
 import axios from 'axios'
+import './style.css'
 
-class App extends Component {
+class BasicTodoList extends Component {
   // 构造函数, 设置基础数据
   constructor (props) {
     super(props)
@@ -119,4 +120,4 @@ class App extends Component {
   // componentWillUnmount
 }
 
-export default App;
+export default BasicTodoList;
