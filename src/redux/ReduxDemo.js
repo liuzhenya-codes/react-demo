@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import store from '../store/state'
 import { getChangeInputAction, getAddItemAction, getDeleteItemAction } from '../store/actionCreators'
+import TodoListUI from './TodoListUI'
 
 class ReduxDemo extends Component {
   constructor (props) {
@@ -39,21 +40,14 @@ class ReduxDemo extends Component {
   }
 
   render () {
-    return (
-      <div>
-        <input value={this.state.inputValue} onChange={this.handleInputChange} onKeyUp={this.handelInputKeyUp}/>
-        <button onClick={this.handleBtnClick}>提交</button>
-        <ul>
-          {
-            this.state.list.map((item, index) => {
-              return (
-                <li key={item} onClick={this.handelDelete.bind(this, index)}>{item}</li>
-              )
-            })
-          }
-        </ul>
-      </div>
-    )
+    return <TodoListUI
+            inputValue={this.state.inputValue}
+            list={this.state.list}
+            handleBtnClick={this.handleBtnClick}
+            handelInputKeyUp={this.handelInputKeyUp}
+            handleInputChange={this.handleInputChange}
+            handelDelete={this.handelDelete}
+          />
   }
 }
 
