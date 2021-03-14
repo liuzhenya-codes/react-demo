@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import store from '../store/state'
-import { CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE_TODO_ITEM } from '../store/actionTypes'
+import { getChangeInputAction, getAddItemAction, getDeleteItemAction } from '../store/actionCreators'
 
 class ReduxDemo extends Component {
   constructor (props) {
@@ -15,17 +15,12 @@ class ReduxDemo extends Component {
   }
 
   handleInputChange (e) {
-    const action = {
-      type: CHANGE_INPUT_VALUE,
-      value: e.target.value
-    }
+    const action = getChangeInputAction(e.target.value)
     store.dispatch(action)
   }
 
   handleBtnClick () {
-    const action = {
-      type: ADD_TODO_ITEM
-    }
+    const action = getAddItemAction()
     store.dispatch(action)
     this.handleInputChange({target: {value: ''}})
   }
@@ -35,10 +30,7 @@ class ReduxDemo extends Component {
   }
 
   handelDelete (index) {
-    const action = {
-      type: DELETE_TODO_ITEM,
-      index
-    }
+    const action = getDeleteItemAction(index)
     store.dispatch(action)
   }
 
