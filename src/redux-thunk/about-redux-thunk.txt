@@ -1,1 +1,1 @@
-redux-thunk 是 redux 的一个中间件, 可以对 dispatch 进行升级, 使其能够处理函数, 并根据函数需求, 再某一时刻派发 action 给 reducer 执行, 以实现异步操作
+redux-redux 是 redux 的辅助插件, 引入之后, 可以更加方便的使用 redux

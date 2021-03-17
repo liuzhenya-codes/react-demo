@@ -1,1 +1,2 @@
+https://github.com/redux-saga/redux-saga
 redux-sage 是 redux 的一个中间件, 区别于 redux-thunk, redux-sage 不会对原生的 redux 进行任何的改造, 而是同步响应某一特定的 action, 然后在自己的文件内进行异步处理, 并将处理完成了 action 对象, 通过内置的一个类似于 dispatch 的方法 put, 派发给 reducer
