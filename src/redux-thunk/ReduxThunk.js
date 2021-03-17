@@ -1,9 +1,9 @@
 import { Component } from 'react'
-import store from '../store/'
-import { getChangeInputAction, getTodolistData, getAddItemAction, getDeleteItemAction } from '../store/actionCreators'
+import store from './store/'
+import { getChangeInputAction, getTodolistData, getAddItemAction, getDeleteItemAction } from './store/actionCreators'
 import TodoListUI from './TodoListUI'
 
-class ReduxDemo extends Component {
+class ReduxThunk extends Component {
   constructor (props) {
     super(props)
     this.state = store.getState()
@@ -16,6 +16,8 @@ class ReduxDemo extends Component {
 
   initTodoList () {
     const action = getTodolistData()
+    // 这里拿到的 action 就是一个函数, redux 本身的 dispatch 不能处理函数, 但是经过 redux-thunk 升级后的 dispatch 就能够处理函数了
+    // 函数派入 dispatch 后, store 会执行这个函数, 并将 dispatch 作为形参传入函数, 函数在处理好一个 action 对象时, 可以使用此实参将 action 对象传入 reducer 执行
     store.dispatch(action)
   }
 
@@ -66,4 +68,4 @@ class ReduxDemo extends Component {
 
 }
 
-export default ReduxDemo
+export default ReduxThunk
